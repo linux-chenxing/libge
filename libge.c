@@ -2,12 +2,13 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
+#include <sys/ioctl.h>
 
 #include "libge.h"
 
 int libge_open(struct ge_cntx *ge)
 {
-	int fd;
+	int fd, ret;
 
 	fd = open("/dev/mstar-ge", O_RDWR);
 	if (fd < 0)
@@ -15,7 +16,9 @@ int libge_open(struct ge_cntx *ge)
 
 	ge->fd = fd;
 
-	return 0;
+	ret = ioctl(ge->fd, LIBGE_IOCTL_INFO, ge);
+
+	return ret;
 }
 
 int libge_close(struct ge_cntx *ge)

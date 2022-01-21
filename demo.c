@@ -11,7 +11,7 @@ int main (int argv, char** argc)
 	printf("Opening GE..");
 	ret = libge_open(&ge);
 	if (ret){
-		printf("failed\n");
+		printf("failed: %d\n", ret);
 		return ret;
 	}
 	else
