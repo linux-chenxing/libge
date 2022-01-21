@@ -19,6 +19,8 @@ int main (int argv, char** argc)
 	else
 		printf("done\n");
 
+	printf("caps %08x\n", ge.info.caps);
+
 	ret = libge_close(&ge);
 
 	return ret;
