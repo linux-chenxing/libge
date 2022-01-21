@@ -1,6 +1,8 @@
 // SPDX-License-Identifier:     GPL-3.0+
 
 #include <stdio.h>
+#include <stdint.h>
+
 #include "libge.h"
 
 int main (int argv, char** argc)
