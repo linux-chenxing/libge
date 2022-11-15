@@ -29,6 +29,16 @@ out:
 	return ret;
 }
 
+int libge_queue_job(struct ge_cntx *ge, struct ge_opdata *opdata, uint32_t *tag)
+{
+	return 0;
+}
+
+int libge_query_job(struct ge_cntx *ge, uint32_t tag)
+{
+	return 0;
+}
+
 int libge_close(struct ge_cntx *ge)
 {
 	close(ge->fd);
