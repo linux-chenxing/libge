@@ -20,7 +20,7 @@ int libge_queue_job(struct ge_cntx *ge,
 int libge_query_job(struct ge_cntx *ge, unsigned long tag);
 int libge_close(struct ge_cntx *ge);
 
-static inline void libge_filljob_fillline(struct mstar_ge_opdata *opdata,
+static inline void libge_filljob_line(struct mstar_ge_opdata *opdata,
 										  unsigned int x0,
 										  unsigned int y0,
 										  unsigned int x1,
