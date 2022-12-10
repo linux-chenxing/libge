@@ -20,6 +20,29 @@ int libge_queue_job(struct ge_cntx *ge,
 int libge_query_job(struct ge_cntx *ge, unsigned long tag);
 int libge_close(struct ge_cntx *ge);
 
+static inline void libge_filljob_fillline(struct mstar_ge_opdata *opdata,
+										  unsigned int x0,
+										  unsigned int y0,
+										  unsigned int x1,
+										  unsigned int y1,
+										  unsigned int a,
+										  unsigned int r,
+										  unsigned int g,
+										  unsigned int b)
+{
+	opdata->op = MSTAR_GE_OP_LINE;
+
+	opdata->line.x0 = x0;
+	opdata->line.y0 = y0;
+	opdata->line.x1 = x1;
+	opdata->line.y1 = y1;
+
+	opdata->line.start_color.a = a;
+	opdata->line.start_color.r = r;
+	opdata->line.start_color.g = g;
+	opdata->line.start_color.b = b;
+}
+
 static inline void libge_filljob_fillrect(struct mstar_ge_opdata *opdata,
 										  unsigned int x0,
 										  unsigned int y0,
