@@ -127,7 +127,7 @@ static inline void libge_filljob_strblit(struct mstar_ge_opdata *opdata,
 									  bool src_v_flip,
 									  bool dst_h_flip,
 									  bool dst_v_flip,
-									  enum mstar_ge_rotation rotation)
+									  unsigned int rotation)
 {
 	opdata->op = MSTAR_GE_OP_STRBLT;
 
