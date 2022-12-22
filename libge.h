@@ -2,6 +2,7 @@
 
 #include <linux/types.h>
 #include <drm/mstar_ge.h>
+#include <stdbool.h>
 
 struct ge_cntx {
 	int fd;
