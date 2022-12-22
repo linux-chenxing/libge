@@ -108,7 +108,7 @@ static inline void libge_filljob_blit(struct mstar_ge_opdata *opdata,
 	opdata->bitblt.dst_x1 = dst_x1;
 	opdata->bitblt.dst_y1 = dst_y1;
 
-	libge_filljob_blit_fliprot(&opdata->bitblt.fliprot,
+	libge_filljob_blit_fliprot(&opdata->bitblt.flags,
 							   src_v_flip,
 							   dst_h_flip,
 							   dst_v_flip,
@@ -141,7 +141,7 @@ static inline void libge_filljob_strblit(struct mstar_ge_opdata *opdata,
 	opdata->strblt.dst_x1 = dst_x1;
 	opdata->strblt.dst_y1 = dst_y1;
 
-	libge_filljob_blit_fliprot(&opdata->strblt.fliprot,
+	libge_filljob_blit_fliprot(&opdata->strblt.flags,
 							   src_v_flip,
 							   dst_h_flip,
 							   dst_v_flip,
