@@ -66,6 +66,26 @@ static inline void libge_filljob_fillrect(struct mstar_ge_opdata *opdata,
 	opdata->rectfill.start_color.b = b;
 }
 
+static inline void libge_filljob_blit_fliprot(__u32 *flags,
+											  bool src_v_flip,
+											  bool dst_h_flip,
+											  bool dst_v_flip,
+											  unsigned int rotation)
+{
+	__u32 tmp = 0;
+
+	if (src_v_flip)
+		tmp |= MSTAR_GE_FLIP_SRC_V;
+	if (dst_h_flip)
+		tmp |= MSTAR_GE_FLIP_DST_H;
+	if (dst_v_flip)
+		tmp |= MSTAR_GE_FLIP_DST_V;
+
+	tmp |= (rotation & MSTAR_GE_ROTATION_MASK);
+
+	*flags = tmp;
+}
+
 static inline void libge_filljob_blit(struct mstar_ge_opdata *opdata,
 								      unsigned int src_x0,
 								      unsigned int src_y0,
@@ -73,7 +93,10 @@ static inline void libge_filljob_blit(struct mstar_ge_opdata *opdata,
 									  unsigned int dst_y0,
 								      unsigned int dst_x1,
 								      unsigned int dst_y1,
-									  enum mstar_ge_rotation rotation)
+									  bool src_v_flip,
+									  bool dst_h_flip,
+									  bool dst_v_flip,
+									  unsigned int rotation)
 {
 	opdata->op = MSTAR_GE_OP_BITBLT;
 
@@ -84,7 +107,11 @@ static inline void libge_filljob_blit(struct mstar_ge_opdata *opdata,
 	opdata->bitblt.dst_x1 = dst_x1;
 	opdata->bitblt.dst_y1 = dst_y1;
 
-	opdata->bitblt.rotation = rotation;
+	libge_filljob_blit_fliprot(&opdata->bitblt.fliprot,
+							   src_v_flip,
+							   dst_h_flip,
+							   dst_v_flip,
+							   rotation);
 }
 
 static inline void libge_filljob_strblit(struct mstar_ge_opdata *opdata,
@@ -96,6 +123,9 @@ static inline void libge_filljob_strblit(struct mstar_ge_opdata *opdata,
 									  unsigned int dst_y0,
 								      unsigned int dst_x1,
 								      unsigned int dst_y1,
+									  bool src_v_flip,
+									  bool dst_h_flip,
+									  bool dst_v_flip,
 									  enum mstar_ge_rotation rotation)
 {
 	opdata->op = MSTAR_GE_OP_STRBLT;
@@ -110,5 +140,9 @@ static inline void libge_filljob_strblit(struct mstar_ge_opdata *opdata,
 	opdata->strblt.dst_x1 = dst_x1;
 	opdata->strblt.dst_y1 = dst_y1;
 
-	opdata->strblt.rotation = rotation;
+	libge_filljob_blit_fliprot(&opdata->strblt.fliprot,
+							   src_v_flip,
+							   dst_h_flip,
+							   dst_v_flip,
+							   rotation);
 }
